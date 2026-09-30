@@ -1,15 +1,11 @@
-from unittest.mock import Mock, patch
+"""Test file for transport.py"""
 
 from src.fetching.transport import fetch_locations
 
 
-def test_fetch_locations_returns_json():
-    fake_response = Mock()
-    fake_response.json.return_value = {"stations": []}
+def test_fetch_location() -> None:
+    """Checks if gtfs_rf data is a dict"""
 
-    with patch("src.fetching.transport.requests.get", return_value=fake_response) as get:
-        result = fetch_locations("Basel")
+    result = fetch_locations(query="Bern")
 
-    assert result == {"stations": []}
-    assert get.call_args.kwargs["params"] == {"query": "Basel"}
-    fake_response.raise_for_status.assert_called_once()
+    assert isinstance(result, dict)

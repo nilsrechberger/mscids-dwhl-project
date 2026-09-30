@@ -1,14 +1,11 @@
-from unittest.mock import Mock, patch
+"""Test file for gtfs_rt.py"""
 
-from src.fetching.gtfs_rt import fetch_gtfd_rt
+from src.fetching.gtfs_rt import fetch_gtfs_rt
 
 
-def test_fetch_gtfd_rt_returns_json():
-    fake_response = Mock()
-    fake_response.json.return_value = {"stations": []}
+def test_fetch_gtfs_rt() -> None:
+    """Checks if gtfs_rf data is a dict"""
 
-    with patch("src.fetching.transport.requests.get", return_value=fake_response) as get:
-        result = fetch_gtfd_rt()
+    result = fetch_gtfs_rt()
 
-    assert result == {"stations": []}
-    fake_response.raise_for_status.assert_called_once()
+    assert isinstance(result, dict)

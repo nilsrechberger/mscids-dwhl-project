@@ -1,7 +1,6 @@
 """Fetch data from the GTFS-RT API"""
 
 import requests
-import json
 
 from src.config import config
 
@@ -18,7 +17,7 @@ def fetch_gtfs_rt() -> dict:
     """
     response = requests.get(
         f"{config.GTFS_RT_API_ENDPOINT}?format=JSON",
-        headers={"Authorization": f"{config.GTFS_RT_API_ENDPOINT}"},
+        headers={"Authorization": f"{config.GTFS_RT_API_TOKEN}"},
         timeout=10,
     )
     response.raise_for_status()

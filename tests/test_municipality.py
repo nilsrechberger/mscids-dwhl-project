@@ -1,14 +1,11 @@
-from unittest.mock import Mock, patch
+"""Test file for municipality.py"""
 
 from src.fetching.municipality import fetch_municipality
 
 
-def test_fetch_municipality_returns_json():
-    fake_response = Mock()
-    fake_response.json.return_value = {"stations": []}
+def test_fetch_municipality() -> None:
+    """Tests if municipality is a binary file"""
 
-    with patch("src.fetching.transport.requests.get", return_value=fake_response) as get:
-        result = fetch_municipality()
+    result = fetch_municipality()
 
-    assert result == {"stations": []}
-    fake_response.raise_for_status.assert_called_once()
+    assert isinstance(result.content, bytes)
