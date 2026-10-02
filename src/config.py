@@ -1,4 +1,4 @@
-""" Project config module """
+"""Project config module"""
 
 import os
 

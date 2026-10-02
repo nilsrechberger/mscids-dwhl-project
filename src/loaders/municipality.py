@@ -5,15 +5,15 @@ import requests
 from src.config import config
 
 
-def fetch_municipality() -> dict:
+def fetch_municipality() -> requests.Response:
     """
     Downloads the static XLSX file from the BFS
 
     Args:
         None
-    
+
     Returns:
-        dict: TBD
+        requests.Response: Response containing the XLSX file
     """
     response = requests.post(
         f"{config.MUNICIPALITY_XLSX}",

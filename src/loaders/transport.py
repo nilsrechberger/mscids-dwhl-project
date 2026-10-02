@@ -1,4 +1,4 @@
-""" Fetch Transport data from Swiss public transport API """
+"""Fetch Transport data from Swiss public transport API"""
 
 import requests
 
@@ -11,7 +11,7 @@ def fetch_locations(query: str = "Basel") -> dict:
 
     Args:
         location: Specifies the location name to search for
-    
+
     Returns:
         dict: API response
     """
