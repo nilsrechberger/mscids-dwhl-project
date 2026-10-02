@@ -25,17 +25,19 @@ A Data Lake and Data Warehouse for Analysing Weather- and Time-Related Delays in
                            [4]             [7]
 ```
 
-## Project Struckture
+## Project Structure
 
 ```bash
 .
 ├── .env.example                        # Expample .env file
 ├── .gitignore                          # Git ignore file
-├── pyproject.toml                      # Python project TOML
+├── pytest.ini                          # Pytest config
 ├── README.md                           # Project documentation
+├── requirements.txt                    # Runtime dependencies
+├── requirements-dev.txt                # Dev dependencies (pytest, black)
 ├── src                                 
 │   ├── config.py                       # Source code congig
-│   └──fetching                        # Data fetching modules
+│   └── loaders                         # Data loaders
 ├── tests                               # Pytest tests
     ├── test_gtfs_rt.py
     ├── test_municipality.py
@@ -62,14 +64,19 @@ python3 -m venv .venv
 .venv\Scripts\activate 
 
 # For Mac / Linux
-souce . .venv/bin/activate
+source .venv/bin/activate
 ```
 
-### 3. Setup the project
+### 3. Install the dependencies
 
 ```bash
-python -m pip install -e .
+python -m pip install -r requirements.txt
+
+# For development (pytest, black)
+python -m pip install -r requirements-dev.txt
 ```
+
+Run everything from the repository root, e.g. `python -m pytest`.
 
 # Contact
 
