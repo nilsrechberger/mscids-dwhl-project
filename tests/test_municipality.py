@@ -1,6 +1,6 @@
 """Test file for municipality.py"""
 
-from src.fetching.municipality import fetch_municipality
+from src.loaders.municipality import fetch_municipality
 
 
 def test_fetch_municipality() -> None:

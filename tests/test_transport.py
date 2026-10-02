@@ -1,6 +1,6 @@
 """Test file for transport.py"""
 
-from src.fetching.transport import fetch_locations
+from src.loaders.transport import fetch_locations
 
 
 def test_fetch_location() -> None:

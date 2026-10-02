@@ -1,6 +1,6 @@
 """Test file for gtfs_rt.py"""
 
-from src.fetching.gtfs_rt import fetch_gtfs_rt
+from src.loaders.gtfs_rt import fetch_gtfs_rt
 
 
 def test_fetch_gtfs_rt() -> None:
