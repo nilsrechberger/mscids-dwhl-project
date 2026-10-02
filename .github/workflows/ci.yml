@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      WEATHER_API_ENDPOINT: https://archive-api.open-meteo.com/v1/archive
+      TRANSPORT_API_ENDPOINT: http://transport.opendata.ch/v1
+      GTFS_RT_API_ENDPOINT: https://api.opentransportdata.swiss/la/gtfs-rt
+      GTFS_RT_API_TOKEN: ${{ secrets.GTFS_RT_API_TOKEN }}
+      MUNICIPALITY_XLSX: "https://www.agvchapp.bfs.admin.ch/de/state/results/xls?SnapshotDate=01.01.2026"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Check formatting (black)
+        run: black --check .
+
+      - name: Type check (mypy)
+        run: mypy src tests
+
+      - name: Run tests
+        run: python -m pytest
